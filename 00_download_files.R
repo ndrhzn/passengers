@@ -20,3 +20,5 @@ for(i in files) {
   download.file(i, destfile = paste0('data/raw/', filename))
   
 }
+
+rm(files, filename, i)
