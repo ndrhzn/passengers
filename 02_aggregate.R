@@ -1,4 +1,5 @@
 library(dplyr)
+library(lubridate)
 library(ggplot2)
 
 # combine
@@ -25,4 +26,17 @@ df_by_date <- df %>%
 
 ggplot(df_by_date)+
   geom_step(aes(x = departure_date, y = passengers))
+
+# by weekday
+
+df_by_weekday <- df %>% 
+  group_by(departure_date) %>% 
+  summarise(passengers = sum(passengers)) %>% 
+  arrange(departure_date) %>% 
+  ungroup() %>% 
+  mutate(week = week(departure_date),
+         weekday = wday(departure_date, week_start = 1))
+
+ggplot(df_by_weekday)+
+  ggbeeswarm::geom_beeswarm(aes(x = as.character(weekday), y = passengers, group = week))
   
