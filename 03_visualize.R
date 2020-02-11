@@ -2,7 +2,7 @@ library(dplyr)
 library(lubridate)
 library(ggplot2)
 
-df <- readRDS("data/parsed.rds")
+df <- readRDS("data/df.rds")
 
 df_by_date <- df %>% 
   group_by(departure_date) %>% 
@@ -28,7 +28,7 @@ ggplot(df_by_date, aes(x = departure_date, y = passengers))+
   geom_step(color = '#D11349')+
   geom_text(data = annotations, aes(label = paste(day, name)),
             family = 'Ubuntu Mono', color = '#5D646F', size = 4.5,
-            hjust = 'left', vjust = 'top', nudge_x = 2.5)+
+            hjust = 'left', vjust = 'center', nudge_x = 3.5)+
   scale_x_date(breaks = seq.Date(as.Date('2019-01-01'), as.Date('2020-01-01'), '1 month'),
                labels = paste('          ', 
                               c(' січень ', ' лютий  ', 'березень', 'квітень ', 'травень ', 'червень ', 

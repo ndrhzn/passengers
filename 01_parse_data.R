@@ -1,4 +1,5 @@
 library(rio)
+library(lubridate)
 
 files <- list.files('data/raw/', full.names = TRUE)
 
@@ -36,6 +37,8 @@ for(i in 1:length(files)) {
     next
     
   }
+  
+  df <- df[month(df$departure_date) == i,]
   
   # write
   

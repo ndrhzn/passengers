@@ -17,6 +17,8 @@ for(file in files) {
 
 df$departure_date <- as.Date(df$departure_date)
 
+saveRDS(df, file = 'data/df.rds')
+
 # by date / some days are missing
 
 df_by_date <- df %>% 
