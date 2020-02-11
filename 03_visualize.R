@@ -26,9 +26,9 @@ png(filename = 'daily.png', width = 1000, height = 600)
 
 ggplot(df_by_date, aes(x = departure_date, y = passengers))+
   geom_step(color = '#D11349')+
-  geom_text(data = annotations, aes(label = paste(day, name)),
+  geom_text(data = annotations, aes(label = paste(day, name), y = passengers+1000),
             family = 'Ubuntu Mono', color = '#5D646F', size = 4.5,
-            hjust = 'left', vjust = 'center', nudge_x = 3.5)+
+            hjust = 'left', vjust = 'bottom', nudge_x = -1)+
   scale_x_date(breaks = seq.Date(as.Date('2019-01-01'), as.Date('2020-01-01'), '1 month'),
                labels = paste('          ', 
                               c(' січень ', ' лютий  ', 'березень', 'квітень ', 'травень ', 'червень ', 
