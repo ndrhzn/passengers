@@ -56,6 +56,6 @@ df_by_route <- df %>%
   mutate(route = paste(departure_station, arrival_station, sep = ' - ')) %>% 
   group_by(route) %>% 
   summarise(passengers = sum(passengers)) %>% 
-  top_n(n = 10, wt = passengers) %>% 
+  #top_n(n = 10, wt = passengers) %>% 
   arrange(desc(passengers))
   
