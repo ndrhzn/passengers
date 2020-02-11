@@ -47,4 +47,13 @@ ggplot(df_by_weekday)+
 ggplot(df_by_weekday)+
   geom_tile(aes(x = week, y = weekday, fill = passengers))+
   scale_fill_distiller(direction = 1)
+
+# by route
+
+df_by_route <- df %>% 
+  mutate(route = paste(departure_station, arrival_station, sep = ' - ')) %>% 
+  group_by(route) %>% 
+  summarise(passengers = sum(passengers)) %>% 
+  top_n(n = 10, wt = passengers) %>% 
+  arrange(desc(passengers))
   
