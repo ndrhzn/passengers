@@ -7,7 +7,7 @@ for(i in 1:length(files)) {
   
   # read
   
-  df <- import(files[i], skip = 1, col_names = FALSE, col_types = 'text')
+  df <- import(files[i], skip = 1, col_names = FALSE)
   
   # check number of columns
   
@@ -30,7 +30,7 @@ for(i in 1:length(files)) {
     
   } else if(all(stringr::str_detect(df$departure_date, '\\d{5}'))) {
     
-    df$departure_date <- as.Date(as.numeric(df$departure_date), origin = '1900-01-01')
+    df$departure_date <- as.Date(as.numeric(df$departure_date), origin = as.Date('1900-01-01'))
     
   } else {
     
